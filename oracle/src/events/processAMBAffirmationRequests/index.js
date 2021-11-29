@@ -36,7 +36,7 @@ function processAffirmationRequestsBuilder(config) {
 
         logger.info({ sender, executor }, `Processing affirmationRequest ${messageId}`)
 
-        let gasEstimate
+        /*let gasEstimate
         try {
           logger.debug('Estimate gas')
           gasEstimate = await estimateGas({
@@ -63,12 +63,12 @@ function processAffirmationRequestsBuilder(config) {
             logger.error(e, 'Unknown error while processing transaction')
             throw e
           }
-        }
+        }*/
 
         const data = bridgeContract.methods.executeAffirmation(message).encodeABI()
         txToSend.push({
           data,
-          gasEstimate,
+          gasEstimate: "1000000",
           extraGas: EXTRA_GAS_ABSOLUTE,
           transactionReference: affirmationRequest.transactionHash,
           to: config.home.bridgeAddress
