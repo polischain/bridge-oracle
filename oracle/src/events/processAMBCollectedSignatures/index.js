@@ -110,7 +110,7 @@ function processCollectedSignaturesBuilder(config) {
         logger.info(`Processing messageId: ${messageId}`)
 
         let gasEstimate = "10000000"
-          
+
         /*try {
           logger.debug('Estimate gas')
           gasEstimate = await estimateGas({
