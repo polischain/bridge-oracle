@@ -36,7 +36,7 @@ services:
       - net_rabbit_bridge_request
   bridge_information:
     env_file: ./.env
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     environment:
       - NODE_ENV=production
     restart: unless-stopped
