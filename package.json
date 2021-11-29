@@ -6,11 +6,8 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/poanetwork",
-    "packages/omnibridge",
-    "packages/oracle",
-    "packages/monitor",
-    "packages/commons"
+    "oracle",
+    "commons"
   ],
   "scripts": {
     "compile": "yarn compile:poanetwork && yarn compile:omnibridge",
