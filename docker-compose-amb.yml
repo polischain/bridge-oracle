@@ -35,7 +35,7 @@ services:
       - net_db_bridge_request
       - net_rabbit_bridge_request
   bridge_information:
-    build: .
+    env_file: ./.env
     image: ghcr.io/polischain/bridge-oracle:main
     environment:
       - NODE_ENV=production
