@@ -11,6 +11,7 @@ services:
       - net_rabbit_bridge_affirmation_fantom
       - net_rabbit_bridge_senderhome_fantom
       - net_rabbit_bridge_senderforeign_fantom
+      - net_rabbit_bridge_information_fantom
     restart: unless-stopped
     volumes: ['~/fantom_bridge_data/rabbitmq:/var/lib/rabbitmq/mnesia']
   redis:
@@ -24,6 +25,7 @@ services:
       - net_db_bridge_senderhome_fantom
       - net_db_bridge_senderforeign_fantom
       - net_db_bridge_shutdown_fantom
+      - net_db_bridge_information_fantom
     restart: unless-stopped
     volumes: ['~/fantom_bridge_data/redis:/data']
   bridge_request:
@@ -118,4 +120,8 @@ networks:
   net_rabbit_bridge_senderhome_fantom:
     driver: bridge
   net_rabbit_bridge_senderforeign_fantom:
+    driver: bridge
+  net_db_bridge_information_fantom:
+    driver: bridge
+  net_rabbit_bridge_information_fantom:
     driver: bridge
