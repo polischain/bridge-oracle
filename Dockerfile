@@ -5,8 +5,7 @@ RUN apt-get update && \
     apt-get clean
 
 WORKDIR /mono
-COPY package.json .
-COPY yarn.lock .
+COPY . .
 RUN NOYARNPOSTINSTALL=1 yarn install --frozen-lockfile --production
 
 CMD echo "To start a bridge process run:" \
