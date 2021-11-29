@@ -1,16 +1,3 @@
-FROM node:12 as contracts
-
-WORKDIR /mono
-
-COPY contracts/package.json contracts/package-lock.json ./contracts/
-
-WORKDIR /mono/contracts
-RUN npm install --only=prod
-
-COPY ./contracts/truffle-config.js ./
-COPY ./contracts/contracts ./contracts
-RUN npm run compile
-
 FROM node:12
 
 RUN apt-get update && \
@@ -19,13 +6,10 @@ RUN apt-get update && \
 
 WORKDIR /mono
 COPY package.json .
-COPY --from=contracts /mono/contracts/build ./contracts/build
-COPY commons/package.json ./commons/
 COPY oracle/package.json ./oracle/
 COPY yarn.lock .
 RUN NOYARNPOSTINSTALL=1 yarn install --frozen-lockfile --production
 
-COPY ./commons ./commons
 COPY ./oracle ./oracle
 
 WORKDIR /mono/oracle
