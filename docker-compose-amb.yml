@@ -35,10 +35,8 @@ services:
       - net_db_bridge_request
       - net_rabbit_bridge_request
   bridge_information:
-    cpus: 0.1
-    mem_limit: 500m
     build: .
-    env_file: ./.env
+    image: ghcr.io/polischain/bridge-oracle:main
     environment:
       - NODE_ENV=production
       - ORACLE_VALIDATOR_ADDRESS=${ORACLE_VALIDATOR_ADDRESS}
