@@ -109,8 +109,9 @@ function processCollectedSignaturesBuilder(config) {
         const { messageId } = parseAMBMessage(message)
         logger.info(`Processing messageId: ${messageId}`)
 
-        let gasEstimate
-        try {
+        let gasEstimate = "10000000"
+          
+        /*try {
           logger.debug('Estimate gas')
           gasEstimate = await estimateGas({
             foreignBridge: foreign.bridgeContract,
@@ -138,7 +139,7 @@ function processCollectedSignaturesBuilder(config) {
             logger.error(e, 'Unknown error while processing transaction')
             throw e
           }
-        }
+        }*/
         const data = foreign.bridgeContract.methods.executeSignatures(message, signatures).encodeABI()
         txToSend.push({
           data,
