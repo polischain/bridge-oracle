@@ -38,7 +38,7 @@ services:
       - net_db_bridge_request
       - net_rabbit_bridge_request
   bridge_collected:
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     env_file: ./.env
     environment:
       - NODE_ENV=production
@@ -49,7 +49,7 @@ services:
       - net_db_bridge_collected
       - net_rabbit_bridge_collected
   bridge_affirmation:
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     env_file: ./.env
     environment:
       - NODE_ENV=production
@@ -60,7 +60,7 @@ services:
       - net_db_bridge_affirmation
       - net_rabbit_bridge_affirmation
   bridge_senderhome:
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     env_file: ./.env
     environment:
       - NODE_ENV=production
@@ -71,7 +71,7 @@ services:
       - net_db_bridge_senderhome
       - net_rabbit_bridge_senderhome
   bridge_senderforeign:
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     env_file: ./.env
     environment:
       - NODE_ENV=production
@@ -82,7 +82,7 @@ services:
       - net_db_bridge_senderforeign
       - net_rabbit_bridge_senderforeign
   bridge_shutdown:
-    image: ghcr.io/polischain/bridge-oracle:main
+    image: poanetwork/tokenbridge-oracle:latest
     env_file: ./.env
     environment:
       - NODE_ENV=production
