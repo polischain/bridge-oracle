@@ -6,12 +6,8 @@ RUN apt-get update && \
 
 WORKDIR /mono
 COPY package.json .
-COPY oracle/package.json ./oracle/
 COPY yarn.lock .
 RUN NOYARNPOSTINSTALL=1 yarn install --frozen-lockfile --production
 
-COPY ./oracle ./oracle
-
-WORKDIR /mono/oracle
 CMD echo "To start a bridge process run:" \
   "ORACLE_VALIDATOR_ADDRESS=<validator address> ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY=<validator address private key> docker-compose up -d --build"
