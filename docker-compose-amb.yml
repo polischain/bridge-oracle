@@ -39,7 +39,6 @@ services:
     image: ghcr.io/polischain/bridge-oracle:main
     environment:
       - NODE_ENV=production
-      - ORACLE_VALIDATOR_ADDRESS=${ORACLE_VALIDATOR_ADDRESS}
     restart: unless-stopped
     entrypoint: yarn watcher:information-request
     networks:
