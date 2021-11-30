@@ -1,0 +1,127 @@
+---
+version: '2.4'
+services:
+  rabbit:
+    environment: ['RABBITMQ_NODENAME=node@rabbit']
+    hostname: rabbit
+    image: rabbitmq:3
+    networks:
+      - net_rabbit_bridge_request_bsc
+      - net_rabbit_bridge_collected_bsc
+      - net_rabbit_bridge_affirmation_bsc
+      - net_rabbit_bridge_senderhome_bsc
+      - net_rabbit_bridge_senderforeign_bsc
+      - net_rabbit_bridge_information_bsc
+    restart: unless-stopped
+    volumes: ['~/bsc_bridge_data/rabbitmq:/var/lib/rabbitmq/mnesia']
+  redis:
+    command: [redis-server, --appendonly, 'yes']
+    hostname: redis
+    image: redis:4
+    networks:
+      - net_db_bridge_request_bsc
+      - net_db_bridge_collected_bsc
+      - net_db_bridge_affirmation_bsc
+      - net_db_bridge_senderhome_bsc
+      - net_db_bridge_senderforeign_bsc
+      - net_db_bridge_shutdown_bsc
+      - net_db_bridge_information_bsc
+    restart: unless-stopped
+    volumes: ['~/bsc_bridge_data/redis:/data']
+  bridge_request:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn watcher:signature-request
+    networks:
+      - net_db_bridge_request_bsc
+      - net_rabbit_bridge_request_bsc
+  bridge_collected:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn watcher:collected-signatures
+    networks:
+      - net_db_bridge_collected_bsc
+      - net_rabbit_bridge_collected_bsc
+  bridge_affirmation:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn watcher:affirmation-request
+    networks:
+      - net_db_bridge_affirmation_bsc
+      - net_rabbit_bridge_affirmation_bsc
+  bridge_senderhome:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn sender:home
+    networks:
+      - net_db_bridge_senderhome_bsc
+      - net_rabbit_bridge_senderhome_bsc
+  bridge_senderforeign:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn sender:foreign
+    networks:
+      - net_db_bridge_senderforeign_bsc
+      - net_rabbit_bridge_senderforeign_bsc
+  bridge_shutdown:
+    image: poanetwork/tokenbridge-oracle:latest
+    env_file: ./.env.bsc
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn manager:shutdown
+    networks:
+      - net_db_bridge_shutdown_bsc
+  bridge_information:
+    env_file: ./.env.bsc
+    image: poanetwork/tokenbridge-oracle:latest
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    entrypoint: yarn watcher:information-request
+    networks:
+      - net_db_bridge_information_bsc
+      - net_rabbit_bridge_information_bsc
+
+networks:
+  net_db_bridge_request_bsc:
+    driver: bridge
+  net_db_bridge_collected_bsc:
+    driver: bridge
+  net_db_bridge_affirmation_bsc:
+    driver: bridge
+  net_db_bridge_senderhome_bsc:
+    driver: bridge
+  net_db_bridge_senderforeign_bsc:
+    driver: bridge
+  net_db_bridge_shutdown_bsc:
+    driver: bridge
+  net_rabbit_bridge_request_bsc:
+    driver: bridge
+  net_rabbit_bridge_collected_bsc:
+    driver: bridge
+  net_rabbit_bridge_affirmation_bsc:
+    driver: bridge
+  net_rabbit_bridge_senderhome_bsc:
+    driver: bridge
+  net_rabbit_bridge_senderforeign_bsc:
+    driver: bridge
+  net_db_bridge_information_bsc:
+    driver: bridge
+  net_rabbit_bridge_information_bsc:
+    driver: bridge
