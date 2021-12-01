@@ -40,7 +40,12 @@ Modify the ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY variable inside the .env file wi
 
 4. Run the service
 ```
-docker-compose -d up 
+docker-compose up -d
+```
+
+5. Stop the service
+```
+docker-compose down
 ```
 
 
