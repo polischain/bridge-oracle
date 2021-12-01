@@ -39,8 +39,14 @@ Modify the ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY variable inside the .env file wi
 ```
 
 4. Run the service
+
+To run the service in the background use:
 ```
 docker-compose up -d
+```
+To run the service and watch the logs use:
+```
+docker-compose up
 ```
 
 5. Stop the service
