@@ -9,6 +9,7 @@ This repository contains a docker-compose file and default configurations to eas
 - Binance Smart Chain `.env.bsc`
 - Fantom Opera `.env.ftm`
 - Polygon `.env.polygon`
+- Avalanche `.env.avalanche`
 
 ## Instructions
 
