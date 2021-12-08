@@ -5,11 +5,12 @@
 
 This repository contains a docker-compose file and default configurations to easily deploy Acheron validator oracles.
 
-## Supported networks
-- Binance Smart Chain `.env.bsc`
-- Fantom Opera `.env.ftm`
-- Polygon `.env.polygon`
-- Avalanche `.env.avalanche`
+## Supported bridges networks
+- Polis <=> Binance Smart Chain `.env.polis-bsc`
+- Polis <=> Fantom Opera `.env.polis-ftm`
+- Polis <=> Polygon `.env.polis-polygon`
+- Polis <=> Avalanche `.env.polis-avalanche`
+- Polis <=> Mainnet `.env.polis-mainnet`
 
 ## Instructions
 
@@ -30,7 +31,7 @@ git clone https://github.com/polischain/bridge-oracle && cd bridge-oracle
 
 > Example for Binance Smart Chain
 ```
-cp .env.bsc .env
+cp .env.polis-bsc .env
 ```
 
 3. Modify the environment file with your validator key
