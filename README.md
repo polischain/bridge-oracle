@@ -11,6 +11,7 @@ This repository contains a docker-compose file and default configurations to eas
 - Polis <=> Polygon `.env.polis-polygon`
 - Polis <=> Avalanche `.env.polis-avalanche`
 - Polis <=> Mainnet `.env.polis-mainnet`
+- Polis <=> Iotex `.env.polis-iotex`
 
 ## Instructions
 
